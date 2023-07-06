@@ -55,6 +55,15 @@ app.post("/signup", async (req, res) => {
     }
   });
 });
+app.get("/products", async (req, res) => {
+  try {
+    const products = await productModel.find({});
+    res.send(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 //api login
 app.post("/login", (req, res) => {
