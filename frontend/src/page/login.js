@@ -42,9 +42,6 @@ const Login = () => {
     e.preventDefault()
     const {email,password} = data
     if(email && password ){
-      if(password != password){
-        alert("mat khau k dung")
-      }
       const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/login`,{
         method : "POST",
         headers : {
@@ -68,7 +65,7 @@ const Login = () => {
       console.log(userData)
     }
     else{
-        alert("Please Enter required fields")
+        alert("nhập đủ các trường dữ liệu")
     }
   }
 

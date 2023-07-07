@@ -25,7 +25,7 @@ const AllProduct = ({ heading }) => {
     });
   };
 
-  const loadingArrayFeature = new Array(10).fill(null);
+  const loadingArrayFeature = new Array(7).fill(null);
 
   return (
     <div className="my-5">

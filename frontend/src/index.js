@@ -23,6 +23,7 @@ import Success from "./page/Success";
 import Cancel from "./page/Cancel";
 import Admin from "./component/Admin";
 import UpdateProduct from "./page/updateproduct";
+import Shop from "./page/Shop";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       <Route path="cancel" element={<Cancel/>}/>
       <Route path="admin" element={<Admin/>}/>
       <Route path="product/:id" element={<UpdateProduct/>}/>
+      <Route path="shop" element={<Shop/>}/>
     </Route>
   )
 );

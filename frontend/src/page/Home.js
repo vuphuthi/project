@@ -60,7 +60,7 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
+        {/* <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
           {homeProductCartList[0]
             ? homeProductCartList.map((el) => {
                 return (
@@ -77,7 +77,7 @@ const Home = () => {
             : loadingArray.map((el, index) => {
                 return <HomeCard key={index+"loading"} loading={"Loading..."} />;
               })}
-        </div>
+        </div> */}
       </div>
 
       <div className="">

@@ -73,10 +73,10 @@ console.log(process.env.REACT_APP_SERVER_DOMIN)
         }
        
       } else {
-        alert("password and confirm password not equal");
+        alert("mật khẩu và xác nhận mật khẩu không bằng nhau");
       }
     } else {
-      alert("Please Enter required fields");
+      alert("Vui lòng nhập các trường bắt buộc");
     }
   };
 
