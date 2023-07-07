@@ -64,6 +64,12 @@ app.get("/products", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+app.get("/getByID/:id", async (req, res) => {
+  const id = req.params.id
+  productModel.findById({_id:id})
+  .then(products => res.json(products))
+  .catch(err => res.json(err))
+})
 
 //api login
 app.post("/login", (req, res) => {
@@ -120,7 +126,18 @@ app.get("/product",async(req,res)=>{
   const data = await productModel.find({})
   res.send(JSON.stringify(data))
 })
- 
+app.put("/updateProduct/:id", async (req, res)=>{
+  const product = await productModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+  // res.send(JSON.stringify(product))
+  .then(products => res.json(products))
+  .catch(err => res.json(err))
+
+})
+app.delete("/removeProduct/:id", async (req, res)=>{
+  const product = await productModel.findByIdAndDelete(req.params.id)
+  .then(products => res.json(products))
+  .catch(err => res.json(err))
+})
 /*****payment getWay */
 console.log(process.env.STRIPE_SECRET_KEY)
 

@@ -1,9 +1,11 @@
-
 import { useEffect, useState } from "react"
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+
 const Admin = () => {
   const [products, setProducts] = useState([]);
-
+  const [editingProductId, setEditingProductId] = useState(null);
   useEffect(() => {
     fetchProductList();
   }, []);
@@ -13,6 +15,15 @@ const Admin = () => {
       const response = await axios.get('http://localhost:8080/product');
       setProducts(response.data);
       console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteProduct = async (productId) => {
+    try {
+      await axios.delete(`http://localhost:8080/removeProduct/${productId}`);
+      fetchProductList();
+      toast("Sản phẩm đã được xóa thành công");
     } catch (error) {
       console.log(error);
     }
@@ -137,6 +148,9 @@ const Admin = () => {
                                 <th
                                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Hình Ảnh
+                                </th><th
+                                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Loại
                                 </th>
                                 <th
                                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -153,10 +167,13 @@ const Admin = () => {
                             <td className="px-5 py-3">{product.price}</td>
                             <td className="px-5 py-3">{product.description}</td>
                             <td className="px-5 py-3"><img src={product.image} width={200} alt="hinh-anh"/></td>
+                            <td className="px-5 py-3">{product.category}</td>
                             <td className="px-5 py-3">
-                              {/* Các thao tác khác */}
+                              <Link className="btn btn-primary" to={`/product/${product._id}`}>update</Link>
+                              <button className="btn btn-danger" onClick={() => deleteProduct(product._id)}>Xóa</button>
                             </td>
                           </tr>
+                          
                         ))}
                       </tbody>
                     </table>
